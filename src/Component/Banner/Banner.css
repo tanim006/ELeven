@@ -1,0 +1,15 @@
+.bg-img {
+    width: 100%;
+    background-image: url("../../assets/assets/bg-shadow.png");
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0; /* Default for smaller screens */
+}
+
+/* Apply border-radius for medium screens and larger */
+@media (min-width: 768px) { /* Adjust the breakpoint as per your framework or design */
+    .bg-img {
+        border-radius: 20px;
+    }
+}
