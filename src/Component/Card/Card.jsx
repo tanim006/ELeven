@@ -2,22 +2,47 @@ import React from 'react';
 import { FaFlagCheckered } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PlayerCard from '../PlayerCard/PlayerCard';
 
-const Card = ({card,handlePlayers}) => {
+const Card = ({card,handlePlayers,coin,setCoin,players}) => {
     const {name,country,image,role,battingType,bowlingType,biddingPrice}=card
     const notify = () => toast("Player Added Successfully");
+    const notifyError = () => toast.error("Not enough coins to buy this player.");
+    const notifyAlreadySelected = () => toast.info("Player already selected.");
+
+    const DecreaseCoin =() =>{
+        const updatedCoin = coin-biddingPrice
+        setCoin(updatedCoin) 
+    }
+   
 
     // Function to handle both actions: updating coins and showing the toast
-    const handleClick = () => {
-        handlePlayers();  // Update the coin state
-        notify();      // Show the notification
+    const handleClick = () => 
+    {
+    const isAlreadySelected = players.some((player) => player.name === name);
+
+        if(isAlreadySelected){
+            notifyAlreadySelected()
+            return
+
+        }
+     if(coin>= biddingPrice){
+        setCoin(coin-biddingPrice)
+        handlePlayers(card);  // Update the coin state
+        notify();  
+            // Show the notification
+     }
+     else{
+        notifyError()
+        return
+     }
     };
     return (
-        <div>
+        <div className=''>
             <div className="card bg-base-100 w-96 shadow-xl">
   <figure className="px-10 pt-10">
     <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+      src={image}
       alt="Shoes"
       className="rounded-xl" />
   </figure>
@@ -43,6 +68,7 @@ const Card = ({card,handlePlayers}) => {
         <button className='btn bg-purple-500 text-white' onClick={handleClick} >Choose Player</button>
         </div>
         
+        
     </div>
 
     </div>
@@ -53,13 +79,6 @@ const Card = ({card,handlePlayers}) => {
     );
 };
 
-// "playerId": 5,
-//       "name": "Jasprit Bumrah",
-//       "country": "India",
-//       "image": "https://example.com/images/jasprit_bumrah.jpg",
-//       "role": "Bowler",
-//       "battingType": "Right-hand Bat",
-//       "bowlingType": "Right-arm Fast",
-//       "biddingPrice": 280000
+{/* <PlayerCard players={players}></PlayerCard> */}
 
 export default Card;

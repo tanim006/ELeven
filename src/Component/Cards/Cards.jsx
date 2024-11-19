@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 
-const Cards = ({handlePlayers}) => {
+const Cards = ({handlePlayers,coin,setCoin,players}) => {
     const [cards,SetCards]= useState([])
     useEffect(()=>{
         fetch('Data.json')
@@ -9,11 +9,12 @@ const Cards = ({handlePlayers}) => {
         .then(data => SetCards(data))
     },[])
     return (
-        <div>
+        <div className=''>
 
 <div className='w-full grid lg:grid-cols-3 md:grid-cols-2 justify-items-center mt-10 gap-5'>
-    {cards.map(card => <Card key={card.id} handlePlayers={handlePlayers}  card={card} />)}
+    {cards.map(card => <Card key={card.id} handlePlayers={handlePlayers} players={players} setCoin={setCoin} coin={coin} card={card} />)}
 </div>
+
 
             
         </div>

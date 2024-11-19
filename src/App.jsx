@@ -7,6 +7,7 @@ import Banner from './Component/Banner/Banner'
 import AfterBanner from './Component/AfterBanner/AfterBanner'
 import Cards from './Component/Cards/Cards'
 import Selected from './Component/Selected/Selected'
+import PlayerCard from './Component/PlayerCard/PlayerCard'
 
 
 
@@ -14,21 +15,33 @@ import Selected from './Component/Selected/Selected'
 function App() {
   const [count, setCount] = useState(0)
     
-    const [coin,SetCoin]=useState(0)
+    const [coin,setCoin]=useState(0)
     
-    const [players,setPlayers] = useState([])
+    
+
+    const [available,setAvailable] =useState([])
+    const [showSelected, setShowSelected] = useState(false);
+
+
+    // available
+
+    const handleAvailable = avail =>{
+      const newAvailable = [...available,avail]
+      console.log('adding available')
+    }
 
 // coin update 
     const handleCoin = () =>{
       const newCoin = coin+150000
       console.log('adding coin',newCoin)
-      SetCoin(newCoin)}
+      setCoin(newCoin)}
 
        // select
+       const [players,setPlayers] = useState([])
        const handlePlayers = player => {
-         const newPlayer = [...players,player]
-         console.log('adding soon player')
-         setPlayers(newPlayer)}
+           const newPlayer = [...players,player]
+           console.log('adding soon player')
+           setPlayers(newPlayer)}
   
   return (
     <>
@@ -37,9 +50,7 @@ function App() {
           <Navbar coin={coin}></Navbar>
           <Banner handleCoin={handleCoin} ></Banner>
           <AfterBanner players={players}></AfterBanner>
-          <Cards handlePlayers={handlePlayers}></Cards>
-        
-          
+          <Cards handlePlayers={handlePlayers} coin={coin} players={players} setCoin={setCoin}></Cards>
       </div>
       
     </>
