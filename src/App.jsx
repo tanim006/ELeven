@@ -8,6 +8,7 @@ import AfterBanner from './Component/AfterBanner/AfterBanner'
 import Cards from './Component/Cards/Cards'
 import Selected from './Component/Selected/Selected'
 import PlayerCard from './Component/PlayerCard/PlayerCard'
+import SelectedPlayers from './Component/SelectedPlayers/SelectedPlayers'
 
 
 
@@ -25,9 +26,9 @@ function App() {
 
     // available
 
-    const handleAvailable = avail =>{
-      const newAvailable = [...available,avail]
-      console.log('adding available')
+    const [selectedPlayers,setSelectedPlayers] = useState([])
+    const handleSelectedPlayers = selected =>{
+      console.log('adding soon ')
     }
 
 // coin update 
@@ -40,7 +41,6 @@ function App() {
        const [players,setPlayers] = useState([])
        const handlePlayers = player => {
            const newPlayer = [...players,player]
-           console.log('adding soon player')
            setPlayers(newPlayer)}
   
   return (
@@ -49,8 +49,10 @@ function App() {
      <div className='lg:p-20'>
           <Navbar coin={coin}></Navbar>
           <Banner handleCoin={handleCoin} ></Banner>
-          <AfterBanner players={players}></AfterBanner>
-          <Cards handlePlayers={handlePlayers} coin={coin} players={players} setCoin={setCoin}></Cards>
+          <AfterBanner players={players} ></AfterBanner>
+          <SelectedPlayers players={players}></SelectedPlayers>
+          <Cards handleSelectedPlayers={handleSelectedPlayers} handlePlayers={handlePlayers} coin={coin} players={players} setCoin={setCoin}></Cards>
+          
       </div>
       
     </>

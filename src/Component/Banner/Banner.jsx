@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Banner = ({ handleCoin }) => {
     // Toast notification function
-    const notify = () => toast("Rewards Claim Successful");
+    const notify = () => toast("Rewards Claim Successful",{ autoClose: 1000 });
 
     // Function to handle both actions: updating coins and showing the toast
     const handleClick = () => {

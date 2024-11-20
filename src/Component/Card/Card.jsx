@@ -4,11 +4,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PlayerCard from '../PlayerCard/PlayerCard';
 
-const Card = ({card,handlePlayers,coin,setCoin,players}) => {
+const Card = ({card,handlePlayers,coin,setCoin,players,handleSelectedPlayers}) => {
     const {name,country,image,role,battingType,bowlingType,biddingPrice}=card
-    const notify = () => toast("Player Added Successfully");
-    const notifyError = () => toast.error("Not enough coins to buy this player.");
-    const notifyAlreadySelected = () => toast.info("Player already selected.");
+    const notify = () => toast("Player Added Successfully",{ autoClose: 1000 });
+    const notifyError = () => toast.error("Not enough coins to buy this player.",{ autoClose: 1000 });
+    const notifyAlreadySelected = () => toast.info("Player already selected.",{ autoClose: 1000 });
 
     const DecreaseCoin =() =>{
         const updatedCoin = coin-biddingPrice
@@ -20,6 +20,10 @@ const Card = ({card,handlePlayers,coin,setCoin,players}) => {
     const handleClick = () => 
     {
     const isAlreadySelected = players.some((player) => player.name === name);
+    if (players.length >= 6) {
+        toast.error("You can only select up to 6 players.", { autoClose: 1000 });
+        return;
+    }
 
         if(isAlreadySelected){
             notifyAlreadySelected()
@@ -30,6 +34,7 @@ const Card = ({card,handlePlayers,coin,setCoin,players}) => {
         setCoin(coin-biddingPrice)
         handlePlayers(card);  // Update the coin state
         notify();  
+        handleSelectedPlayers()
             // Show the notification
      }
      else{
@@ -65,7 +70,7 @@ const Card = ({card,handlePlayers,coin,setCoin,players}) => {
         </div>
         <div className='flex items-center justify-between mt-3'>
             <h1 className='font-semibold'>price: {biddingPrice}</h1>
-        <button className='btn bg-purple-500 text-white' onClick={handleClick} >Choose Player</button>
+        <button className='btn bg-purple-500 text-white' onClick={()=>handleClick(players)} >Choose Player</button>
         </div>
         
         

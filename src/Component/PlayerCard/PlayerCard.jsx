@@ -10,8 +10,10 @@ const PlayerCard = ({players}) => {
                <div>
                <img src="" alt="" />
                 <div className=''>
-                    <h1>Name :{name} </h1>
-                    <h1>Role</h1>
+                    
+                    <h1 className='font-bold text-lg'>Name : <span className='font-normal'>{name}</span></h1>
+                    <h1 className='font-bold text-lg'>Playing as : <span className='font-normal'>{role}</span></h1>
+                    
                 </div>
                </div>
              <button className='btn btn-ghost'><MdDeleteForever className='text-5xl p-2 border border-orange-600 rounded-xl'></MdDeleteForever></button>
