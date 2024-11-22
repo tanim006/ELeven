@@ -17,6 +17,8 @@ function App() {
   const [count, setCount] = useState(0)
     
     const [coin,setCoin]=useState(0)
+    const [item,setItem] = useState(false)
+
     
     
 
@@ -49,9 +51,9 @@ function App() {
      <div className='lg:p-20'>
           <Navbar coin={coin}></Navbar>
           <Banner handleCoin={handleCoin} ></Banner>
-          <AfterBanner players={players} ></AfterBanner>
-          <SelectedPlayers players={players}></SelectedPlayers>
-          <Cards handleSelectedPlayers={handleSelectedPlayers} handlePlayers={handlePlayers} coin={coin} players={players} setCoin={setCoin}></Cards>
+          <AfterBanner players={players} item={item} setItem={setItem}></AfterBanner>
+          <SelectedPlayers players={players} item={item} setItem={setItem}></SelectedPlayers>
+          <Cards handleSelectedPlayers={handleSelectedPlayers} item={item} setItem={setItem} handlePlayers={handlePlayers} coin={coin} players={players} setCoin={setCoin}></Cards>
           
       </div>
       
